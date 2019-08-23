@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.red-class{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" name="my-input" v-model="message1" >
+			<p>input value is = {{ message1 }}</p>
+			<ul>
+				<li v-for="name in names">{{name}}</li>
+			</ul>
+			<input type="text" name="add-name" id="add-name" v-model="newName"  v-bind:class={"red-class":isRedClass}>
+			<button v-on:click="addName" v-bind:disabled="newName === ''"> Add Name</button>
+			<button v-on:click="toggleClass" > Toggle class</button>
+
+			<h1>All Tasks</h1>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Status</th>
+				</tr>
+				<tr v-for="task in tasks">
+					<td>{{task.name}}</td>
+					<td>{{task.status}}</td>
+				</tr>
+			</table>
+
+			<h1>Incomplete Tasks</h1>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Status</th>
+				</tr>
+				<tr v-for="task in inCompleteTasks">
+					<td>{{task.name}}</td>
+					<td>{{task.status}}</td>
+				</tr>
+			</table>
+		</div>
+
+		<script>
+			let app = new Vue({
+				el: '#app',
+				data:{
+					newName:'',
+					message1:"test message",
+					names:['test1','test2','test3'],
+					isRedClass:false,
+					isDisabled : false,
+					tasks:[
+						{name:'task1',status:true},
+						{name:'task2',status:false},
+						{name:'task1',status:false},
+						{name:'task1',status:false},
+						{name:'task1',status:false},
+						{name:'task1',status:true}
+					]
+				},
+				methods : {
+					addName:function(){
+						if(this.newName.length >0){
+							this.names.push(this.newName);
+							this.newName ='';
+						}
+					},
+					toggleClass:function(){
+						if(this.isRedClass == true){
+							this.isRedClass = false;
+						}else{
+							this.isRedClass = true;
+						}
+					}
+
+				},
+				computed:{
+					inCompleteTasks(){
+						return this.tasks.filter(function(task){
+							return !task.status;
+						});
+					}
+				}
+				/*mounted(){
+					document.getElementById("add").addEventListener('click',function(){
+						let inputval = document.getElementById("add-name").value;
+						app.names.push(inputval);
+						document.getElementById("add-name").value ='';
+					});
+				}*/
+
+			});
+
+
+
+		</script>
+
+	</body>
+</html>
