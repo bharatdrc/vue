@@ -1,5 +1,5 @@
 Vue.component('task',{
-	props:['col1Name','col2Name'],
+	props:['col1name','col2name'],
 	data(){
 		return{
 			tasks:[
@@ -11,19 +11,7 @@ Vue.component('task',{
 				{name:'task6',status:true}
 			]
 		}
-	},
-
-	template:`<table>
-				<tr>
-					<th>{{col1Name}}</th>
-					<th>{{col2Name}}</th>
-				</tr>
-				<tr v-for="task in tasks">
-					<td>{{task.name}}</td>
-					<td>{{task.status}}</td>
-				</tr>
-			</table>`
-
+	}
 });
 
 new Vue({

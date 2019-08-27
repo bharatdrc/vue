@@ -3,17 +3,18 @@ Vue.component('modal',{
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			      	<slot name="header"></slot>
+			        
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="$emit('close')">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        ...
+			        <slot>Default content</slot>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="$emit('close')">Close</button>
-			        <button type="button" class="btn btn-primary" >Save changes</button>
+			      	<slot name="footer"></slot>
+			       
 			      </div>
 			    </div>
 			  </div>

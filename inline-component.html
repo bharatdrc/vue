@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.red-class{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+
+
+			<task col1name="Name" col2name="Status" inline-template>
+				
+			<table>
+				<tr>
+					<th>{{col1name}}</th>
+					<th>{{col2name}}</th>
+				</tr>
+				<tr v-for="task in tasks">
+					<td>{{task.name}}</td>
+					<td>{{task.status}}</td>
+				</tr>
+			</table>
+
+			</task>
+
+		</div>
+
+		<script src="inline-component.js"></script>
+
+
+
+
+
+	</body>
+</html>
